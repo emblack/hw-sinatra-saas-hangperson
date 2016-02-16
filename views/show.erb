@@ -1,11 +1,15 @@
 <h2>Guess a letter</h2>
 
-<% if flash[:message] %>
+<% if flash[:message] == "You have already used that letter" %>
   <p>
     <span class="error"><%= flash[:message] %></span>
   </p>
+<% elsif flash[:message] == "Input a valid letter!" %>
+  <p>
+    <span class="error"><%= flash[:message] %></span>
+  </p>
+<% else %>
 <% end %>
-
 <p>
   Wrong Guesses:
   <span class="guesses"><%= @game.wrong_guesses %></span>

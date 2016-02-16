@@ -39,13 +39,19 @@ class HangpersonApp < Sinatra::Base
   # If a guess is invalid, set flash[:message] to "Invalid guess."
   post '/guess' do
     letter = params[:guess].to_s[0]
-    if ( @game.guesses.include? letter) || (@game.wrong_guesses.include? letter)
-      flash[:message] = "You have already used that letter"
-    else
-      @game.guess(letter)
+    if (letter == nil) || (letter =~ /[^a-zA-Z]/)
+     letter = ''
+    end
+    if (( @game.guesses.include? letter) || (@game.wrong_guesses.include? letter)) && (letter != '')
+        flash[:message] = "You have already used that letter"
+    elsif letter == ''
+      flash[:message] = "Input a valid letter!"
+    else   
+        @game.guess(letter)
     end
     redirect '/show'
   end
+  
   
   # Everytime a guess is made, we should eventually end up at this route.
   # Use existing methods in HangpersonGame to check if player has
@@ -66,13 +72,17 @@ class HangpersonApp < Sinatra::Base
   get '/win' do
    if @game.word_with_guesses != @game.word
     flash[:message]= "Cheater! You Don't Win."
-   end
+   else
     erb :win # You may change/remove this line
+   end
   end
   
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    if @game.check_win_or_lose != :lose
+      flash[:message] = "You didn't lose..."
+    else
+      erb :lose # You may change/remove this line
+    end
   end
   
 end

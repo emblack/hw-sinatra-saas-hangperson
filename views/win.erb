@@ -4,11 +4,11 @@
   <p>
     <span class="error"><%= flash[:message] %></span>
   </p>
-<% end %>
+<% else %>
 
 <p>
   The word was
   <span class="win"><%= @game.word %></span>.
 </p>
-
+<% end %>
 <%= erb :new %>

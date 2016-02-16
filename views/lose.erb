@@ -1,10 +1,16 @@
 <h1>Sorry, you lose!</h1>
 
+<% if flash[:message] %>
+  <p>
+    <span class="error"><%= flash[:message] %></span>
+  </p>
+<% else %>
+
 <p>
    The word was
    <span class="lose"><%= @game.word %></span>
 </p>
-
+<% end %>
 <%= erb :new %>
 
 

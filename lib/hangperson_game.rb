@@ -56,8 +56,6 @@ class HangpersonGame
         displayed[i]="-"
       end
     end
-    puts "#{@word_with_guesses}"
-    puts "#{check_win_or_lose}"
     return displayed
   end
   
