@@ -50,12 +50,12 @@ class HangpersonGame
   end
   
   def check_win_or_lose
-    if (@wrong_guesses.length > 6 ) || ((@wrong_guesses.length  + @guesses.length )> 6 )
-     "lose".to_sym
-    elsif @word.squeeze.chars.sort.join == @guesses.chars.sort.join
-      "win".to_sym
+    if @word == @word_with_guesses
+      return :win
+    elsif @wrong_guesses.length > 6
+      return :lose
     else 
-      "play".to_sym
+      return :play
     end
   end
       
