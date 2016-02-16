@@ -64,9 +64,9 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/win' do
-   # if @game.word_with_guesses != @game.word
-      #flash[:message]= "Cheater! You Don't Win."
-   # end
+   if @game.word_with_guesses != @game.word
+    flash[:message]= "Cheater! You Don't Win."
+   end
     erb :win # You may change/remove this line
   end
   

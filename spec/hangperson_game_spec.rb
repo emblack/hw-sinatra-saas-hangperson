@@ -110,10 +110,12 @@ describe HangpersonGame do
     end
     it 'should be win when all letters guessed' do
       guess_several_letters(@game, 'ogd')
+      puts "#{@game.check_win_or_lose} 100000000"
       expect(@game.check_win_or_lose).to eq(:win)
     end
     it 'should be lose after 7 incorrect guesses' do
       guess_several_letters(@game, 'tuvwxyz')
+      puts " #{@game.word_with_guesses} #{@game.check_win_or_lose} 100000000"
       expect(@game.check_win_or_lose).to eq(:lose)
     end
     it 'should continue play if neither win nor lose' do

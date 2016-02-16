@@ -18,6 +18,16 @@ class HangpersonGame
     @wrong_guesses= ""
   end
   
+    def check_win_or_lose
+    if @word.squeeze.chars.sort.join == @guesses.chars.sort.join
+      return :win
+    elsif @wrong_guesses.length > 6
+      return :lose
+    else 
+      return :play
+    end
+  end
+  
   def guess(chc)
     if chc==nil
       raise ArgumentError
@@ -46,19 +56,11 @@ class HangpersonGame
         displayed[i]="-"
       end
     end
+    puts "#{@word_with_guesses}"
+    puts "#{check_win_or_lose}"
     return displayed
   end
   
-  def check_win_or_lose
-    if @word == @word_with_guesses
-      return :win
-    elsif @wrong_guesses.length > 6
-      return :lose
-    else 
-      return :play
-    end
-  end
-      
   
   def self.get_random_word
     require 'uri'
